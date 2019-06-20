@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractAuditBlockchain.ClientApp", "ContractAuditBlockchain.ClientApp\ContractAuditBlockchain.ClientApp.csproj", "{94746ABE-F508-4C72-8973-943768A3839F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractAuditBlockchain.Core", "ContractAuditBlockchain.Core\ContractAuditBlockchain.Core.csproj", "{48E6A627-6FE5-463B-B6A4-A45A9C03C960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractAuditBlockchain.ApiAccess", "ContractAuditBlockchain.ApiAccess\ContractAuditBlockchain.ApiAccess.csproj", "{9D9BBFC8-9EF4-4065-915A-FE142FEF36D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractAuditBlockchain.BusinessLogic", "ContractAuditBlockchain.BusinessLogic\ContractAuditBlockchain.BusinessLogic.csproj", "{C64F9D98-2F39-4454-9DE2-0B2EC7FADEEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractAuditBlockchain.Domain", "ContractAuditBlockchain.Domain\ContractAuditBlockchain.Domain.csproj", "{F7247319-3883-495C-BFE3-0A56542B8E27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bna files", "bna files", "{7CF4DC9B-DCC2-4EB9-8957-27F90059D644}"
+	ProjectSection(SolutionItems) = preProject
+		bna files\nationwidehire-business-network.bna = bna files\nationwidehire-business-network.bna
+		bna files\package.json = bna files\package.json
+		bna files\permissions.acl = bna files\permissions.acl
+		bna files\README.md = bna files\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{5820329E-6A73-467B-97A0-7BBB8897C7CA}"
+	ProjectSection(SolutionItems) = preProject
+		bna files\lib\logic.js = bna files\lib\logic.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{537BCB24-141B-4100-852D-C94526D3331A}"
+	ProjectSection(SolutionItems) = preProject
+		bna files\models\NationwideHireModel.cto = bna files\models\NationwideHireModel.cto
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94746ABE-F508-4C72-8973-943768A3839F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94746ABE-F508-4C72-8973-943768A3839F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94746ABE-F508-4C72-8973-943768A3839F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94746ABE-F508-4C72-8973-943768A3839F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E6A627-6FE5-463B-B6A4-A45A9C03C960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E6A627-6FE5-463B-B6A4-A45A9C03C960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E6A627-6FE5-463B-B6A4-A45A9C03C960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E6A627-6FE5-463B-B6A4-A45A9C03C960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D9BBFC8-9EF4-4065-915A-FE142FEF36D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D9BBFC8-9EF4-4065-915A-FE142FEF36D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D9BBFC8-9EF4-4065-915A-FE142FEF36D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D9BBFC8-9EF4-4065-915A-FE142FEF36D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C64F9D98-2F39-4454-9DE2-0B2EC7FADEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C64F9D98-2F39-4454-9DE2-0B2EC7FADEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C64F9D98-2F39-4454-9DE2-0B2EC7FADEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C64F9D98-2F39-4454-9DE2-0B2EC7FADEEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7247319-3883-495C-BFE3-0A56542B8E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7247319-3883-495C-BFE3-0A56542B8E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7247319-3883-495C-BFE3-0A56542B8E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7247319-3883-495C-BFE3-0A56542B8E27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5820329E-6A73-467B-97A0-7BBB8897C7CA} = {7CF4DC9B-DCC2-4EB9-8957-27F90059D644}
+		{537BCB24-141B-4100-852D-C94526D3331A} = {7CF4DC9B-DCC2-4EB9-8957-27F90059D644}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FE2E1A9-2DB6-48EE-ACE2-E3861817AC74}
+	EndGlobalSection
+EndGlobal

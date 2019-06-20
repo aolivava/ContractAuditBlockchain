@@ -1,0 +1,88 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * NationwideHire business network definition.
+ */
+namespace org.example.basic
+
+enum Status {
+  o CREATED
+  o SIGNED
+  o EXPIRED
+}
+
+/**
+ * Asset: the contract
+ * RentContract can keep a reference to all its T&Cs, or the other way around, by referencing the containing RentContract from the specific T&C.
+ *   --> TandC[] TsAndCs
+ */
+asset RentContract identified by contractId {
+  o String contractId
+  --> HubAdmin contractProvider
+  --> HubClient contractClient
+  o DateTime expiryDate
+  o Integer durationDays
+  o Status status default="CREATED"
+  o String content
+}
+
+/**
+ * Asset: one Term And Condition (T&C) of the contract
+ */
+asset TandC identified by tandCId {
+  o String tandCId
+  --> RentContract contract
+  o Status status default="CREATED"
+  o String content
+}
+
+/**
+ * Participant: Admin. Nationwide Hire themselves. It will be allowed to create and modify contracts and its T&Cs (terms and conditions)
+ */
+participant HubAdmin identified by participantId {
+  o String participantId default="NationwideHire"
+  o String name default="Nationwide Hire"
+}
+
+/**
+ * Participant: Client. Nationwide Hire clients. There will be a HubClient per Nationwide Hire client company, and it will have readonly access to the contracts, limited to the ones that belong to the client's company.
+ */
+participant HubClient identified by participantId {
+  o String participantId
+  o String name
+}
+
+/**
+ * Transaction: Update Contract. "contract" will be a resource, asset stored in the ledger. "newData" will be a new object, not persisted, with the new values on the contract.
+ */
+concept UpdateContractData {
+  o DateTime expiryDate optional
+  o Integer durationDays optional
+  o Status status optional
+  o String content optional
+}
+
+transaction UpdateContract {
+  --> RentContract contract
+  o UpdateContractData newData
+}
+
+/**
+ * Event: When a contract is updated, an event will be triggered.
+ */
+event UpdateContractEvent {
+  --> RentContract contract
+  o UpdateContractData newData
+}

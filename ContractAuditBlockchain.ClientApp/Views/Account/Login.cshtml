@@ -1,0 +1,113 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+    var message = TempData["Message"];
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+    <div id="page-login">
+        <div id="siteLogin" class="col-centered round-border">
+            <section id="loginHeader">
+                <img src="~/Content/images/blockchain-logo.png" width="150" />
+                <h4>Contract Audit Blockchain</h4>
+            </section>
+            <section id="loginForm">
+                @using (Ajax.BeginForm("AjaxLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "s", OnBegin = "b", }, new { @class = "form-horizontal", id = "loginForm", autocomplete = "off", novalidate = "" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="alert loginalert alert-dismissable alert-danger" style="display: none;">
+                        <h4>Error</h4>
+                        <p></p>
+                    </div>
+                    if (message != null)
+                    {
+                        <div class="alert alert-dismissable alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <p>@message</p>
+                        </div>
+                    }
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+
+                            <div class="form-elem floatl js-floatl">
+                                @Html.LabelFor(m => m.UserName, new { @class = "control-label floatl__label" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control floatl__input", @autofocus = "autofocus", @placeholder = "Username" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-elem floatl js-floatl">
+                                @Html.LabelFor(m => m.Password, new { @class = "control-label floatl__label" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control floatl__input", autocomplete = "off", @placeholder = "Password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="text-center">
+                                <label class="remember-me">
+                                    @Html.CheckBoxFor(m => m.RememberMe) Remember me
+                                </label>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" id="submit-btn" data-loading-text="Logging in..." data-redirect-text="Redirecting, please wait..." class="btn btn-primary btn-login">
+                                    Login
+                                </button>
+                            </div>
+
+                            <h6 class="text-center">
+                                <a href="#" data-toggle="modal" data-target="#modal-forgotpassword">Forgot password?</a>
+                            </h6>
+
+
+                        </div>
+                    </div>
+
+                }
+            </section>
+        </div>
+    </div>
+
+    @Html.Partial("_ForgotPassword", Model)
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    function b() {
+        $($('#submit-btn').get(0)).button('loading');
+    }
+    function s(data) {
+        if (data.error != undefined) {
+            e(data.error);
+            return;
+        }
+
+        if (data.success) {
+            if (typeof (data.redirecturl) == 'string') {
+                window.location = data.redirecturl;
+            }
+        } else {
+            e(data.errors);
+        }
+    }
+    function e(err) {
+        $(".loginalert p").html(err);
+        $(".loginalert").show();
+        $($('#submit-btn').get(0)).button('reset')
+    }
+
+</script>
+</body>
+</html>

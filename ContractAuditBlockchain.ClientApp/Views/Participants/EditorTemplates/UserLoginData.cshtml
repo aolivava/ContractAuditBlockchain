@@ -1,0 +1,48 @@
+﻿@model UserLoginDataViewModel
+@{
+    var labelHtmlAttr = new { @class = "control-label col-xs-2" };
+    //var editorHtmlAttr = new { @class = "form-control", style = "width:100%" };
+    var editorHtmlAttr = new { @class = "form-control" };
+    var editorViewData = new { htmlAttributes = editorHtmlAttr };
+    var valHtmlAttr = new { @class = "text-danger" };
+}
+<div id="loginDataPartial" class="panel panel-default">
+    <div class="panel-heading">Login Data</div>
+    <div class="panel-body">
+        @Html.HiddenFor(m => m.ID)
+        <div class="form-group">
+            @Html.LabelFor(m => m.Forename, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.EditorFor(m => m.Forename, editorViewData)
+                @Html.ValidationMessageFor(m => m.Forename, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Surname, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.EditorFor(m => m.Surname, editorViewData)
+                @Html.ValidationMessageFor(m => m.Surname, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.EditorFor(m => m.Email, editorViewData)
+                @Html.ValidationMessageFor(m => m.Email, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Roles, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-10">
+                @Html.DropDownListFor(m => m.Roles, (IEnumerable<SelectListItem>)ViewBag.UserRoles)
+                @Html.ValidationMessageFor(m => m.Roles, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-3">
+                @Html.EditorFor(m => m.Active)
+                @Html.ValidationMessageFor(m => m.Active, "", valHtmlAttr)
+            </div>
+        </div>
+    </div>
+</div>

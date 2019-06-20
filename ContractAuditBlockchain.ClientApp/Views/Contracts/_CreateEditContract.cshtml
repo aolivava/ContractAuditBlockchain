@@ -1,0 +1,56 @@
+﻿@model ContractDetailsViewModel
+@{
+    Layout = null;
+    var isCreate = string.IsNullOrWhiteSpace(Model.Contract?.ID);
+    ViewBag.Title = string.Format("{0} Contract", isCreate ? "Create" : "Edit");
+    var prefix = isCreate ? "Create" : "Edit";
+}
+<div id="@(prefix)Modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            @using (Ajax.BeginForm(prefix, "Contracts", new AjaxOptions { HttpMethod = "POST", OnSuccess = $"on{prefix}Submitted" }, new { id = $"{prefix}Form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="modal-header">
+                    <h4 class="modal-title">@ViewBag.Title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <section id="filterForm">
+                            <div class="alert alert-danger hidden" id="@(prefix)ModalErrors">
+                                <h4>Error</h4>
+                                <p id="@(prefix)ModalErrorList"></p>
+                            </div>
+                            @Html.ValidationSummary(true)
+
+                            @Html.EditorFor(m => m.Contract)
+                        </section>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="ok-btn" data-loading-text="Saving..." class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="buttonClose">Cancel</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#@(prefix)Modal").modal('show');
+    });
+
+    function on@(prefix)Submitted(data) {
+        if (data.success) {
+            window.location.reload();
+        }
+        else {
+            _showValidationError(data, '@(prefix)Modal');
+        }
+    }
+</script>

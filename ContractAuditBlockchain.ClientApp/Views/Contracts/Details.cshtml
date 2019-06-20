@@ -1,0 +1,56 @@
+﻿@model ContractDetailsViewModel
+@{
+    ViewBag.Title = $"Details for Contract {Model.Contract.ID}";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @(ViewBag.Title)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(model => model.Contract)
+    </div>
+</div>
+
+<div class="row col-xs-12">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Amendments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var anAmendment in Model.Amendments)
+            {
+                <tr>
+                    <td>
+                        <div class="col-md-6 col-xs-12"><span class="control-label">Transaction ID:</span> @(anAmendment.TransactionID)</div>
+                        <div class="col-md-6 col-xs-12"><span class="control-label">Timestamp:</span> @(anAmendment.Timestamp.ToString("dd/MM/yyyy HH:mm:ss"))</div>
+                        <div class="col-md-4 col-xs-12"><span class="control-label">Expiry Date:</span> @(anAmendment.ContractData.ExpiryDate.ToString("dd/MM/yyyy HH:mm:ss"))</div>
+                        <div class="col-md-4 col-xs-12"><span class="control-label">Status: <span class="badge">@(anAmendment.ContractData.Status)</span></span></div>
+                        <div class="col-md-4 col-xs-12"><span class="control-label">Duration Days:</span> @(anAmendment.ContractData.DurationDays)</div>
+                        <div class="col-md-12 col-xs-12"><span class="control-label">Content:</span> @(anAmendment.ContractData.Content)</div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<div class="clearfix"></div>
+
+<div id="amendContractDiv"></div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.editContractButton').click(function (e) {
+                var contractId = $(e.currentTarget).data('contractid');
+                if (contractId) {
+                    $('#amendContractDiv').load('@(Url.Action("Edit", "Contracts"))/' + contractId);
+                }
+            });
+        });
+    </script>
+}

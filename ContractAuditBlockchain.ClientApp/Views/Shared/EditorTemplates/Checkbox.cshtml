@@ -1,0 +1,13 @@
+﻿@model bool?
+@{ 
+    var tmpl = ViewData.TemplateInfo;
+    var name = tmpl.GetFullHtmlFieldName("");
+    var htmlAttr = HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["htmlAttributes"]);
+    var id = htmlAttr.TryGetValue("id", out var x) ? x : tmpl.GetFullHtmlFieldId("");
+    var disp = ViewData.ModelMetadata.GetDisplayName();
+}
+<label>
+    <input class="check-box" data-val="true" data-val-required="The @disp field is required." id="@id" name="@name" type="checkbox" value="true" checked="@(Model ?? false)" />
+    <input name="@name" type="hidden" value="false" />
+    @disp
+</label>

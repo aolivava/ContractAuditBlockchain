@@ -1,0 +1,62 @@
+﻿@model UserLoginDataViewModel
+@{
+    var labelHtmlAttr = new { @class = "control-label col-xs-2" };
+    var displayHtmlAttr = new { @class = "" };
+    var displayViewData = new { htmlAttributes = displayHtmlAttr };
+}
+<div id="loginDataPartial" class="panel panel-default">
+    <div class="panel-heading">
+        @if (Model.CanEdit)
+        {
+            <button type="button" class="btn btn-info btn-sm editUserButton pull-right" data-participantid="@(Model.ID)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+        }
+        Login Data
+    </div>
+    <div class="panel-body">
+        <div class="alert alert-danger hidden" id="userResetPasswordErrors">
+            <h4>Error</h4>
+            <p id="userResetPasswordErrorList"></p>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Forename, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.DisplayFor(m => m.Forename, displayViewData)
+            </div>
+            @if (Model.CanEdit)
+            {
+                using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                }
+
+                <div class="col-xs-3 col-xs-offset-1">
+                    <button class="btn btn-info btn-sm resetUserPasswordButton" data-participantid="@(Model.ID)"><span class="glyphicon glyphicon-envelope"></span> Reset password</button>
+                </div>
+            }
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Surname, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.DisplayFor(m => m.Surname, displayViewData)
+            </div>
+        </div>
+
+        <div class="row">
+            @Html.LabelFor(m => m.Email, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.DisplayFor(m => m.Email, displayViewData)
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Roles, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @(String.Join(", ", Model.Roles))
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-offset-2 col-xs-3">
+                @Html.DisplayFor(m => m.Active)
+            </div>
+        </div>
+    </div>
+</div>

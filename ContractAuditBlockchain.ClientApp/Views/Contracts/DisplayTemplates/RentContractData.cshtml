@@ -1,0 +1,59 @@
+﻿@model RentContractDataViewModel
+@{
+    var labelHtmlAttr = new { @class = "control-label col-xs-2" };
+    var displayHtmlAttr = new { @class = "" };
+    var displayViewData = new { htmlAttributes = displayHtmlAttr };
+}
+<div id="rentContractPartial" class="panel panel-default">
+    <div class="panel-heading">
+        @if (Model.CanEdit)
+        {
+            <button type="button" class="btn btn-info btn-sm editContractButton pull-right" data-contractid="@(Model.ID)"><span class="glyphicon glyphicon-pencil"></span> Amend</button>
+        }
+        Rent Contract Data
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @Html.LabelFor(m => m.ID, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.DisplayFor(m => m.ID, displayViewData)
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.ContractProvider, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                <a href="@($"{Url.Action("DetailsForAdmin", "Participants")}/{Model.ContractProvider.ID}")">@(Model.ContractProvider.Name)</a>
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.ContractClient, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                <a href="@($"{Url.Action("DetailsForClient", "Participants")}/{Model.ContractClient.ID}")">@(Model.ContractClient.Name)</a>
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Status, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.DisplayFor(m => m.Status, displayViewData)
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.ExpiryDate, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @(Model.ExpiryDate.ToString("dd/MM/yyyy HH:mm:ss"))
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.DurationDays, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.DisplayFor(m => m.DurationDays, displayViewData)
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Content, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.DisplayFor(m => m.Content, displayViewData)
+            </div>
+        </div>
+    </div>
+</div>

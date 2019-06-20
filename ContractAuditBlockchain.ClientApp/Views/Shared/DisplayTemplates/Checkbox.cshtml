@@ -1,0 +1,11 @@
+﻿@model bool?
+@{ 
+    var tmpl = ViewData.TemplateInfo;
+    var name = tmpl.GetFullHtmlFieldName("");
+    var id = tmpl.GetFullHtmlFieldId("");
+    var disp = ViewData.ModelMetadata.GetDisplayName();
+}
+<label>
+    <input class="check-box" id="@id" name="@name" type="checkbox" checked="@(Model ?? false)" disabled="disabled"/>
+    @disp
+</label>

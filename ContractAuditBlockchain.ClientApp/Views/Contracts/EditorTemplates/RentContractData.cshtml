@@ -1,0 +1,56 @@
+﻿@model RentContractDataViewModel
+@{
+    var labelHtmlAttr = new { @class = "control-label col-xs-2" };
+    //var editorHtmlAttr = new { @class = "form-control", style = "width:100%" };
+    var editorHtmlAttr = new { @class = "form-control" };
+    var editorViewData = new { htmlAttributes = editorHtmlAttr };
+    var valHtmlAttr = new { @class = "text-danger" };
+}
+<div id="rentContractPartial" class="panel panel-default">
+    <div class="panel-heading">Rent Contract Data</div>
+    <div class="panel-body">
+        @Html.HiddenFor(m => m.ID)
+        <div class="form-group">
+            @Html.LabelFor(m => m.ContractProvider, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-10">
+                @Html.DropDownListFor(m => m.ContractProvider.ID, (IEnumerable<SelectListItem>)ViewBag.Admins)
+                @Html.ValidationMessageFor(m => m.ContractProvider.ID, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ContractClient, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-10">
+                @Html.DropDownListFor(m => m.ContractClient.ID, (IEnumerable<SelectListItem>)ViewBag.Clients)
+                @Html.ValidationMessageFor(m => m.ContractClient.ID, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Status, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-10">
+                @Html.DropDownListFor(m => m.Status, (IEnumerable<SelectListItem>)ViewBag.Statuses)
+                @Html.ValidationMessageFor(m => m.Status, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ExpiryDate, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.EditorFor(m => m.ExpiryDate, editorViewData)
+                @Html.ValidationMessageFor(m => m.ExpiryDate, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DurationDays, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.EditorFor(m => m.DurationDays, editorViewData)
+                @Html.ValidationMessageFor(m => m.DurationDays, "", valHtmlAttr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Content, htmlAttributes: labelHtmlAttr)
+            <div class="col-xs-6">
+                @Html.TextAreaFor(model => model.Content, new { @class = "form-control", style = "width:100%; max-width:100%;", rows = "5" })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>

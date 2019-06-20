@@ -1,0 +1,65 @@
+﻿@model DetailsForAdminViewModel
+@{
+    ViewBag.Title = $"Details for Admin {Model.AdminParticipant.Name}";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @(ViewBag.Title)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(model => model.AdminParticipant.Login)
+    </div>
+</div>
+
+<div class="row col-xs-12">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Contracts
+                    <button type="button" class="btn btn-info btn-sm createContractButton pull-right" data-participantid="@(Model.AdminParticipant.ID)"><span class="glyphicon glyphicon-plus"></span> New Contract</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var aContract in Model.ContractList)
+            {
+                <tr>
+                    <td>
+                        <div class="col-md-4 col-xs-12"><span class="control-label">Client:</span> <a href="@($"{Url.Action("DetailsForClient", "Participants")}/{aContract.ContractClient.ID}")">@(aContract.ContractClient.Name)</a></div>
+                        <div class="col-md-4 col-xs-12"><span class="control-label">Expiry Date:</span> @(aContract.ExpiryDate.ToString("dd/MM/yyyy HH:mm:ss"))</div>
+                        <div class="col-md-4 col-xs-12"><span class="control-label">Status: <span class="badge">@(aContract.Status)</span></span></div>
+                        <div class="col-md-6 col-xs-12"><span class="control-label">Duration Days:</span> @(aContract.DurationDays)</div>
+                        <div class="col-md-6 col-xs-12">
+                            <button type="button" class="btn btn-info btn-sm detailsContractButton pull-right" data-contractid="@(aContract.ID)"><span class="glyphicon glyphicon-list-alt"></span> Contract Details</button>
+                        </div>
+
+                        <div class="col-md-12 col-xs-12"><span class="control-label">Content:</span> @(aContract.Content)</div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<div class="clearfix"></div>
+
+<div id="editAdminParticipantDiv"></div>
+<div id="createContractDiv"></div>
+
+@section scripts {
+    <script>
+        var userDetailsParams = {
+            editDiv: "editAdminParticipantDiv",
+            editUrl: "@(Url.Action("EditAdmin", "Participants"))",
+            resetPasswordUrl: "@(Url.Action("ResetPassword", "Account"))",
+            contractUrl: "@(Url.Action("Details", "Contracts"))",
+            contractDiv: "createContractDiv",
+            createContractUrl: "@(Url.Action("Create", "Contracts"))"
+        };
+    </script>
+
+    @Scripts.Render("~/bundles/user-details")
+}
