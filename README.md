@@ -1,5 +1,10 @@
 # ContractAuditBlockchain
-Graduation Project of this repository's owner. Contract Audit using Blockchain technology
+Contract Audit using Blockchain technology.
+
+**System to solve legal contract disputes using a private permissioned Blockchain**
+Graduation Project of Alberto Oliva Varela at Universidad de La Rioja (UNIR). July 2019. 
+
+"*Trabajo de Fin de Grado de Alberto Oliva Varela en la Universidad de la Rioja (UNIR). Julio 2019.*"
 
 # Abstract
 This project focuses on the problematic presented by the British company Nationwide Hire, client of DCSL Software Ltd, current employer of the author of this project.
